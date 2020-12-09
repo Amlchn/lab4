@@ -113,14 +113,66 @@ public class GraphicsDisplay extends JPanel {
 	 protected void paintMarkers(Graphics2D canvas) {
 	
 		 canvas.setStroke(markerStroke);
+		 canvas.setColor(Color.RED);
+		 canvas.setPaint(Color.GREEN);
+		 for(Double[] point: graphicsData) {
+		 int integer =point[1].intValue();
 		
-		for (Double[] point: graphicsData) {
+		 canvas.setColor(Color.BLACK);
+		 Point2D.Double center = xyToPoint(point[0],point[1]);
 
-		Ellipse2D.Double marker = new Ellipse2D.Double();
-		
-		Point2D.Double center = xyToPoint(point[0], point[1]); 
-		    
-		marker.setFrameFromCenter(center, corner); canvas.draw(marker); 
+
+
+		 GeneralPath markerPath = new GeneralPath();
+
+		 markerPath.moveTo(center.getX(), center.getY());
+
+		 markerPath.lineTo(center.getX()+5.5,
+		 center.getY());
+		 markerPath.moveTo(center.getX()+5.5,
+		 center.getY());
+		 markerPath.lineTo(center.getX()+5.5,
+		 center.getY()+2);
+		 markerPath.moveTo(center.getX()+5.5,
+		 center.getY());
+		 markerPath.lineTo(center.getX()+5.5,
+		 center.getY()-2);
+		 markerPath.moveTo(center.getX(), 
+		 center.getY());
+		 markerPath.lineTo(center.getX()-5.5,
+		 center.getY());
+		 markerPath.moveTo(center.getX()-5.5,
+		 center.getY());
+		 markerPath.lineTo(center.getX()-5.5,
+		 center.getY()+2);
+		 markerPath.moveTo(center.getX()-5.5,
+		 center.getY());
+		 markerPath.lineTo(center.getX()-5.5,
+		 center.getY()-2);
+		 markerPath.moveTo(center.getX(), center.getY());
+		 markerPath.lineTo(center.getX(),
+		 center.getY()+5.5);
+		 markerPath.moveTo(center.getX(),
+		 center.getY()+5.5);
+		 markerPath.lineTo(center.getX()+2,
+		 center.getY()+5.5);
+		 markerPath.moveTo(center.getX(),
+		 center.getY()+5.5); 
+		 markerPath.lineTo(center.getX()-2,
+		 center.getY()+5.5);
+		 markerPath.moveTo(center.getX(), center.getY());
+		 markerPath.lineTo(center.getX(),
+		 center.getY()-5.5);
+		 markerPath.moveTo(center.getX(),
+		 center.getY()-5.5);
+		 markerPath.lineTo(center.getX()+2,
+		 center.getY()-5.5);
+		 markerPath.moveTo(center.getX(),
+		 center.getY()-5.5); 
+		 markerPath.lineTo(center.getX()-2,
+		 center.getY()-5.5);
+		 markerPath.closePath();
+		 canvas.draw(markerPath);
 		}
 	 }
 	 public void paintComponent(Graphics g) {	 
