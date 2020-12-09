@@ -117,7 +117,9 @@ public class GraphicsDisplay extends JPanel {
 		 canvas.setPaint(Color.GREEN);
 		 for(Double[] point: graphicsData) {
 		 int integer =point[1].intValue();
-		
+		 if(Math.pow(integer, 0.5)%1==0)
+		 canvas.setColor(Color.GREEN);
+		 else
 		 canvas.setColor(Color.BLACK);
 		 Point2D.Double center = xyToPoint(point[0],point[1]);
 
